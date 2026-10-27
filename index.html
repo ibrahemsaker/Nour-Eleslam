@@ -1,0 +1,1406 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض نور السلام</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            --gold: #c6a04a;
+            --gold-dark: #a78330;
+            --gold-light: #f8f1df;
+            --dark: #292929;
+            --gray: #747474;
+            --light: #f7f7f7;
+            --white: #fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            color: var(--dark);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Navbar */
+        .main-navbar {
+            background: rgba(255,255,255,.98);
+            box-shadow: 0 3px 20px rgba(0,0,0,.07);
+            padding: 13px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        /* Logo on the far left */
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            direction: ltr;
+            flex-shrink: 0;
+        }
+
+        .brand-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gold);
+            color: white;
+            font-size: 23px;
+            border-radius: 12px;
+            transform: rotate(-4deg);
+        }
+
+        .brand-text {
+            direction: rtl;
+            text-align: right;
+        }
+
+        .brand-text h3 {
+            font-size: 19px;
+            font-weight: 800;
+            margin: 0;
+            color: var(--dark);
+        }
+
+        .brand-text span {
+            font-size: 11px;
+            color: var(--gold-dark);
+            letter-spacing: 1px;
+        }
+
+        .navbar-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin: 0 auto;
+        }
+
+        .navbar-links a {
+            color: #444;
+            font-size: 14px;
+            font-weight: 600;
+            transition: .3s;
+            position: relative;
+            padding: 8px 0;
+        }
+
+        .navbar-links a::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            height: 2px;
+            width: 0;
+            background: var(--gold);
+            transition: .3s;
+        }
+
+        .navbar-links a:hover,
+        .navbar-links a.active {
+            color: var(--gold-dark);
+        }
+
+        .navbar-links a:hover::after,
+        .navbar-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-contact {
+            background: var(--gold);
+            color: white;
+            padding: 11px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: .3s;
+            white-space: nowrap;
+        }
+
+        .nav-contact:hover {
+            background: var(--gold-dark);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: 0;
+            color: var(--dark);
+            font-size: 24px;
+        }
+
+        /* Hero Slider */
+        .hero-section {
+            position: relative;
+        }
+
+        .hero-slide {
+            height: 570px;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-slide::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                270deg,
+                rgba(20,20,20,.86) 0%,
+                rgba(20,20,20,.65) 43%,
+                rgba(20,20,20,.08) 100%
+            );
+        }
+
+        .slide-1 {
+            background-image: url('img/1.jpeg');
+        }
+
+        .slide-2 {
+            background-image: url('img/2.jpeg');
+        }
+
+        .slide-3 {
+            background-image: url('img/3.jpeg');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 670px;
+            color: white;
+            padding: 30px 0;
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: #f2d58c;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero-label::before {
+            content: "";
+            width: 35px;
+            height: 2px;
+            background: var(--gold);
+        }
+
+        .hero-content h1 {
+            font-size: clamp(34px, 4.5vw, 58px);
+            font-weight: 800;
+            line-height: 1.5;
+            margin-bottom: 18px;
+        }
+
+        .hero-content h1 span {
+            color: #e1bd68;
+        }
+
+        .hero-content p {
+            color: #ededed;
+            font-size: 16px;
+            line-height: 2.1;
+            max-width: 570px;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            flex-wrap: wrap;
+        }
+
+        .btn-gold {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--gold);
+            color: white;
+            border: 1px solid var(--gold);
+            padding: 13px 25px;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 700;
+            transition: .3s;
+        }
+
+        .btn-gold:hover {
+            color: white;
+            background: var(--gold-dark);
+            border-color: var(--gold-dark);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline-light-custom {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: white;
+            border: 1px solid rgba(255,255,255,.6);
+            padding: 13px 25px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            transition: .3s;
+        }
+
+        .btn-outline-light-custom:hover {
+            background: white;
+            color: var(--dark);
+        }
+
+        .carousel-indicators {
+            margin-bottom: 28px;
+            gap: 6px;
+        }
+
+        .carousel-indicators [data-bs-target] {
+            width: 27px;
+            height: 5px;
+            border: 0;
+            border-radius: 10px;
+            background-color: var(--gold);
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 6%;
+        }
+
+        .slider-arrow {
+            width: 43px;
+            height: 43px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,.17);
+            border: 1px solid rgba(255,255,255,.5);
+            color: white;
+            transition: .3s;
+        }
+
+        .carousel-control-prev:hover .slider-arrow,
+        .carousel-control-next:hover .slider-arrow {
+            background: var(--gold);
+        }
+
+        /* Features */
+        .features-section {
+            position: relative;
+            z-index: 5;
+            margin-top: -1px;
+            background: var(--gold);
+            padding: 8px 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            color: white;
+            padding: 10px;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,.55);
+            border-radius: 12px;
+            font-size: 21px;
+            flex-shrink: 0;
+        }
+
+        .feature-item h5 {
+            font-size: 15px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .feature-item p {
+            margin: 0;
+            font-size: 12px;
+            color: rgba(255,255,255,.9);
+        }
+
+        /* About */
+        .about-section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+            padding: 0 0 25px 25px;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 430px;
+            object-fit: cover;
+            border-radius: 15px;
+            display: block;
+        }
+
+        .about-image-wrapper::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 65%;
+            height: 65%;
+            border: 4px solid var(--gold);
+            border-radius: 15px;
+            z-index: 0;
+        }
+
+        .about-image {
+            position: relative;
+            z-index: 1;
+        }
+
+        .experience-badge {
+            position: absolute;
+            bottom: 40px;
+            right: -15px;
+            z-index: 2;
+            background: var(--gold);
+            color: white;
+            padding: 20px 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,.15);
+            text-align: center;
+        }
+
+        .experience-badge strong {
+            display: block;
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .experience-badge span {
+            font-size: 12px;
+        }
+
+        .section-label {
+            color: var(--gold-dark);
+            font-size: 14px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .section-label::before {
+            content: "";
+            height: 2px;
+            width: 32px;
+            background: var(--gold);
+        }
+
+        .section-title {
+            color: var(--dark);
+            font-size: clamp(28px, 3vw, 39px);
+            font-weight: 800;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .section-title span {
+            color: var(--gold-dark);
+        }
+
+        .about-description {
+            color: var(--gray);
+            font-size: 15px;
+            line-height: 2.2;
+            margin-bottom: 25px;
+        }
+
+        .about-points {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+
+        .about-point {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .about-point i {
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold-dark);
+            background: var(--gold-light);
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        /* Contact CTA */
+        .contact-banner {
+            padding: 65px 0;
+            background: #f5f5f5;
+        }
+
+        .contact-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+            padding: 35px 40px;
+            background: white;
+            border: 1px solid #ececec;
+            border-right: 5px solid var(--gold);
+            border-radius: 14px;
+        }
+
+        .contact-box h3 {
+            font-size: 25px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .contact-box p {
+            color: var(--gray);
+            font-size: 14px;
+            margin: 0;
+            line-height: 1.9;
+        }
+
+        /* Footer */
+        .main-footer {
+            background: #292929;
+            color: white;
+            padding: 65px 0 0;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .footer-brand .brand-icon {
+            background: var(--gold);
+        }
+
+        .footer-brand h4 {
+            font-size: 20px;
+            font-weight: 800;
+            margin: 0 0 5px;
+        }
+
+        .footer-brand span {
+            color: #d7b968;
+            font-size: 12px;
+        }
+
+        .footer-description {
+            color: #c0c0c0;
+            font-size: 13px;
+            line-height: 2.2;
+            max-width: 330px;
+        }
+
+        .footer-title {
+            font-size: 17px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            position: relative;
+            padding-bottom: 13px;
+        }
+
+        .footer-title::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 42px;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 10px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #c6c6c6;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: .3s;
+        }
+
+        .footer-links a i {
+            color: var(--gold);
+            font-size: 11px;
+        }
+
+        .footer-links a:hover {
+            color: #e5c66f;
+            transform: translateX(-4px);
+        }
+
+        .footer-contact-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            margin-bottom: 17px;
+            color: #c6c6c6;
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+        .footer-contact-item i {
+            color: var(--gold);
+            margin-top: 5px;
+            width: 16px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .social-links a {
+            width: 39px;
+            height: 39px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #555;
+            border-radius: 9px;
+            color: white;
+            transition: .3s;
+        }
+
+        .social-links a:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            margin-top: 45px;
+            padding: 22px 0;
+            text-align: center;
+            color: #bcbcbc;
+            font-size: 12px;
+        }
+
+        .footer-bottom span {
+            color: #dfbd63;
+        }
+
+        /* Back to top */
+        .back-to-top {
+            position: fixed;
+            left: 22px;
+            bottom: 22px;
+            width: 43px;
+            height: 43px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            border-radius: 10px;
+            background: var(--gold);
+            color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,.15);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: .3s;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--gold-dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            .navbar-container {
+                flex-wrap: wrap;
+            }
+
+            .mobile-toggle {
+                display: block;
+                order: 2;
+            }
+
+            .brand-logo {
+                order: 1;
+            }
+
+            .nav-contact {
+                display: none;
+            }
+
+            .navbar-links {
+                display: none;
+                order: 3;
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 10px 0 5px;
+                margin: 0;
+            }
+
+            .navbar-links.open {
+                display: flex;
+            }
+
+            .navbar-links a {
+                padding: 13px 10px;
+                border-bottom: 1px solid #eee;
+            }
+
+            .navbar-links a::after {
+                display: none;
+            }
+
+            .hero-slide {
+                height: 510px;
+            }
+
+            .about-image-wrapper {
+                margin-bottom: 35px;
+            }
+
+            .contact-box {
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 575px) {
+            .brand-icon {
+                width: 42px;
+                height: 42px;
+                font-size: 20px;
+            }
+
+            .brand-text h3 {
+                font-size: 16px;
+            }
+
+            .hero-slide {
+                height: 500px;
+            }
+
+            .hero-content {
+                padding: 20px;
+            }
+
+            .hero-content h1 {
+                font-size: 34px;
+            }
+
+            .hero-content p {
+                font-size: 13px;
+            }
+
+            .carousel-control-prev,
+            .carousel-control-next {
+                width: 10%;
+            }
+
+            .slider-arrow {
+                width: 32px;
+                height: 32px;
+                font-size: 12px;
+            }
+
+            .features-section {
+                padding: 15px 0;
+            }
+
+            .feature-item {
+                justify-content: flex-start;
+                padding: 12px 18px;
+            }
+
+            .about-section {
+                padding: 65px 0;
+            }
+
+            .about-image {
+                height: 300px;
+            }
+
+            .experience-badge {
+                right: -5px;
+                bottom: 35px;
+                padding: 14px 18px;
+            }
+
+            .about-points {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+
+            .contact-box h3 {
+                font-size: 21px;
+            }
+
+            .contact-banner {
+                padding: 40px 0;
+            }
+
+            .main-footer {
+                padding-top: 45px;
+            }
+
+            .footer-column {
+                margin-bottom: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="main-navbar">
+        <div class="container">
+            <div class="navbar-container">
+
+                <!-- Logo: far left -->
+                <a href="#home" class="brand-logo">
+                    <div class="brand-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="brand-text">
+                        <h3>معرض نور السلام</h3>
+                        <span>اختيارك الأفضل دائماً</span>
+                    </div>
+                </a>
+
+                <button class="mobile-toggle" id="mobileToggle"
+                        aria-label="فتح القائمة" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <div class="navbar-links" id="navbarLinks">
+                    <a href="#home" class="active">الصفحة الرئيسية</a>
+                    <a href="#products">منتجاتنا</a>
+                    <a href="#offers">عروضنا</a>
+                    <a href="#contact">تواصل معنا</a>
+                </div>
+
+                <a href="#contact" class="nav-contact">
+                    <i class="fas fa-phone-alt ms-2"></i>
+                    تواصل معنا
+                </a>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Slider: 3 Slides -->
+    <section class="hero-section" id="home">
+
+        <div id="mainSlider" class="carousel slide carousel-fade"
+             data-bs-ride="carousel" data-bs-interval="5000">
+
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#mainSlider"
+                        data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="الشريحة الأولى"></button>
+
+                <button type="button" data-bs-target="#mainSlider"
+                        data-bs-slide-to="1"
+                        aria-label="الشريحة الثانية"></button>
+
+                <button type="button" data-bs-target="#mainSlider"
+                        data-bs-slide-to="2"
+                        aria-label="الشريحة الثالثة"></button>
+            </div>
+
+            <div class="carousel-inner">
+
+                <!-- Slide 1 -->
+                <div class="carousel-item active">
+                    <div class="hero-slide slide-1">
+                        <div class="container">
+                            <div class="hero-content">
+                                <div class="hero-label">أهلاً بك في معرضنا</div>
+
+                                <h1>
+                                    معرض نور السلام<br>
+                                    <span>جودة تستحقها</span>
+                                </h1>
+
+                                <p>
+                                    اكتشف تجربة تسوق مختلفة، واختار من مجموعة
+                                    متنوعة من المنتجات التي تجمع بين الجودة
+                                    العالية والأسعار المناسبة.
+                                </p>
+
+                                <div class="hero-buttons">
+                                    <a href="#products" class="btn-gold">
+                                        اكتشف منتجاتنا
+                                        <i class="fas fa-arrow-left"></i>
+                                    </a>
+
+                                    <a href="#about" class="btn-outline-light-custom">
+                                        اعرف المزيد
+                                        <i class="fas fa-info-circle"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-item">
+                    <div class="hero-slide slide-2">
+                        <div class="container">
+                            <div class="hero-content">
+                                <div class="hero-label">تسوق بثقة وراحة</div>
+
+                                <h1>
+                                    الجودة في المقام الأول<br>
+                                    <span>والسعر يناسبك</span>
+                                </h1>
+
+                                <p>
+                                    نهتم بتقديم اختيارات متنوعة تناسب احتياجاتك،
+                                    مع الحرص على جودة المنتجات ورضا عملائنا.
+                                </p>
+
+                                <div class="hero-buttons">
+                                    <a href="#products" class="btn-gold">
+                                        تصفح المنتجات
+                                        <i class="fas fa-arrow-left"></i>
+                                    </a>
+
+                                    <a href="#contact" class="btn-outline-light-custom">
+                                        اتصل بنا
+                                        <i class="fas fa-phone-alt"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="carousel-item">
+                    <div class="hero-slide slide-3">
+                        <div class="container">
+                            <div class="hero-content">
+                                <div class="hero-label">عروض مميزة في انتظارك</div>
+
+                                <h1>
+                                    وفر أكتر مع<br>
+                                    <span>عروض نور السلام</span>
+                                </h1>
+
+                                <p>
+                                    تابع أحدث العروض والمنتجات المتاحة لدينا،
+                                    واختار الأنسب لك بأفضل قيمة ممكنة.
+                                </p>
+
+                                <div class="hero-buttons">
+                                    <a href="#offers" class="btn-gold">
+                                        اكتشف عروضنا
+                                        <i class="fas fa-tags"></i>
+                                    </a>
+
+                                    <a href="#contact" class="btn-outline-light-custom">
+                                        تواصل معنا
+                                        <i class="fas fa-headset"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="carousel-control-prev" type="button"
+                    data-bs-target="#mainSlider" data-bs-slide="prev"
+                    aria-label="الصورة السابقة">
+                <span class="slider-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </span>
+            </button>
+
+            <button class="carousel-control-next" type="button"
+                    data-bs-target="#mainSlider" data-bs-slide="next"
+                    aria-label="الصورة التالية">
+                <span class="slider-arrow">
+                    <i class="fas fa-chevron-left"></i>
+                </span>
+            </button>
+
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features-section">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-4">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div>
+                            <h5>جودة مميزة</h5>
+                            <p>نهتم بجودة المنتجات واختيار الأفضل</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <div>
+                            <h5>أسعار مناسبة</h5>
+                            <p>اختيارات تناسب احتياجاتك وميزانيتك</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div>
+                            <h5>خدمة تهتم بك</h5>
+                            <p>نسعى دائماً لكسب ثقتك ورضاك</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="row align-items-center g-5">
+
+                <div class="col-lg-6">
+                    <div class="about-image-wrapper">
+                        <img
+                            src="img/4.jpeg"
+                            alt="تصميم داخلي أنيق"
+                            class="about-image"
+                            loading="lazy">
+
+                        <div class="experience-badge">
+                            <strong><i class="fas fa-star"></i></strong>
+                            <span>ثقتكم هي نجاحنا</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="section-label">من نحن</div>
+
+                    <h2 class="section-title">
+                        أهلاً بك في<br>
+                        <span>معرض نور السلام</span>
+                    </h2>
+
+                    <p class="about-description">
+                        في معرض نور السلام، نؤمن أن تجربة التسوق المميزة تبدأ
+                        من الاهتمام باحتياجات العميل. نسعى لتوفير منتجات متنوعة
+                        بجودة جيدة وأسعار تنافسية، مع الاهتمام بحسن التعامل
+                        وتقديم تجربة شراء سهلة ومريحة.
+                    </p>
+
+                    <p class="about-description">
+                        هدفنا هو بناء علاقة طويلة الأمد مع عملائنا، من خلال
+                        الثقة والوضوح والحرص على تقديم أفضل قيمة ممكنة.
+                    </p>
+
+                    <div class="about-points">
+                        <div class="about-point">
+                            <i class="fas fa-check"></i>
+                            <span>منتجات متنوعة</span>
+                        </div>
+
+                        <div class="about-point">
+                            <i class="fas fa-check"></i>
+                            <span>اهتمام برضا العملاء</span>
+                        </div>
+
+                        <div class="about-point">
+                            <i class="fas fa-check"></i>
+                            <span>أسعار تنافسية</span>
+                        </div>
+
+                        <div class="about-point">
+                            <i class="fas fa-check"></i>
+                            <span>خدمة مميزة</span>
+                        </div>
+                    </div>
+
+                    <a href="#contact" class="btn-gold">
+                        تواصل معنا الآن
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Products anchor -->
+    <div id="products"></div>
+
+    <!-- Offers / Contact CTA -->
+    <section class="contact-banner" id="offers">
+        <div class="container">
+            <div class="contact-box">
+                <div>
+                    <div class="section-label">عروضنا ومنتجاتنا</div>
+
+                    <h3>بتدور على اختيار مناسب ليك؟</h3>
+
+                    <p>
+                        تواصل مع معرض نور السلام للتعرف على المنتجات
+                        المتاحة وآخر العروض والأسعار.
+                    </p>
+                </div>
+
+                <a href="#contact" class="btn-gold">
+                    اسأل عن العروض
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer" id="contact">
+        <div class="container">
+            <div class="row">
+
+                <!-- About footer -->
+                <div class="col-lg-4 col-md-6 footer-column">
+                    <div class="footer-brand">
+                        <div class="brand-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+
+                        <div>
+                            <h4>معرض نور السلام</h4>
+                            <span>اختيارك الأفضل دائماً</span>
+                        </div>
+                    </div>
+
+                    <p class="footer-description">
+                        نسعى لتقديم تجربة تسوق مميزة تجمع بين جودة المنتجات
+                        والأسعار المناسبة والاهتمام باحتياجات عملائنا.
+                        ثقتكم هي أساس نجاحنا.
+                    </p>
+
+                    <div class="social-links">
+                        <!-- ضع روابط صفحات المعرض الحقيقية -->
+                        <a href="#" aria-label="فيسبوك">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+
+                        <a href="#" aria-label="إنستجرام">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+
+                        <a href="#" aria-label="واتساب">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+
+                        <a href="#" aria-label="تيك توك">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick links -->
+                <div class="col-lg-2 col-md-6 footer-column">
+                    <h5 class="footer-title">روابط سريعة</h5>
+
+                    <ul class="footer-links">
+                        <li>
+                            <a href="#home">
+                                <i class="fas fa-chevron-left"></i>
+                                الصفحة الرئيسية
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#products">
+                                <i class="fas fa-chevron-left"></i>
+                                منتجاتنا
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#offers">
+                                <i class="fas fa-chevron-left"></i>
+                                عروضنا
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#about">
+                                <i class="fas fa-chevron-left"></i>
+                                من نحن
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#contact">
+                                <i class="fas fa-chevron-left"></i>
+                                تواصل معنا
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="col-lg-3 col-md-6 footer-column">
+                    <h5 class="footer-title">لماذا نور السلام؟</h5>
+
+                    <ul class="footer-links">
+                        <li>
+                            <a href="#about">
+                                <i class="fas fa-chevron-left"></i>
+                                جودة المنتجات
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#about">
+                                <i class="fas fa-chevron-left"></i>
+                                أسعار مناسبة
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#about">
+                                <i class="fas fa-chevron-left"></i>
+                                خدمة العملاء
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#offers">
+                                <i class="fas fa-chevron-left"></i>
+                                أحدث العروض
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact details -->
+                <div class="col-lg-3 col-md-6 footer-column">
+                    <h5 class="footer-title">بيانات التواصل</h5>
+
+                    <div class="footer-contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>أضف عنوان معرض نور السلام هنا</span>
+                    </div>
+
+                    <div class="footer-contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>أضف رقم الهاتف هنا</span>
+                    </div>
+
+                    <div class="footer-contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>تواصل معنا لمعرفة مواعيد العمل</span>
+                    </div>
+
+                    <div class="footer-contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>أضف البريد الإلكتروني هنا</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                جميع الحقوق محفوظة ©
+                <span>معرض نور السلام</span>
+                <span id="currentYear"></span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <button class="back-to-top" id="backToTop" aria-label="العودة للأعلى">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Mobile menu
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navbarLinks = document.getElementById('navbarLinks');
+        const toggleIcon = mobileToggle.querySelector('i');
+
+        mobileToggle.addEventListener('click', function () {
+            const isOpen = navbarLinks.classList.toggle('open');
+
+            mobileToggle.setAttribute('aria-expanded', isOpen);
+            toggleIcon.classList.toggle('fa-bars', !isOpen);
+            toggleIcon.classList.toggle('fa-times', isOpen);
+        });
+
+        // Close menu after clicking a link
+        document.querySelectorAll('#navbarLinks a').forEach(function (link) {
+            link.addEventListener('click', function () {
+                navbarLinks.classList.remove('open');
+
+                mobileToggle.setAttribute('aria-expanded', 'false');
+
+                toggleIcon.classList.remove('fa-times');
+                toggleIcon.classList.add('fa-bars');
+            });
+        });
+
+        // Active navbar link
+        const navLinks = document.querySelectorAll('.navbar-links a');
+
+        navLinks.forEach(function (link) {
+            link.addEventListener('click', function () {
+                navLinks.forEach(function (item) {
+                    item.classList.remove('active');
+                });
+
+                this.classList.add('active');
+            });
+        });
+
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 350) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        backToTop.addEventListener('click', function () {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Dynamic copyright year
+        document.getElementById('currentYear').textContent =
+            new Date().getFullYear();
+
+        // Pause slider while hovering on desktop
+        const sliderElement = document.getElementById('mainSlider');
+        const slider = bootstrap.Carousel.getOrCreateInstance(sliderElement, {
+            interval: 5000,
+            ride: 'carousel',
+            pause: 'hover',
+            wrap: true
+        });
+    </script>
+
+</body>
+</html>
